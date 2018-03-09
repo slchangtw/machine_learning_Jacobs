@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+# created by Shun-Lung Chang and Anna Ruby
+# sh.chang@jacobs-university.de
+# a.ruby@jacobs-university.de
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -38,7 +41,7 @@ class KMeans:
                 # if X is a vector, set center[i, 0] to X
                 if X_i.ndim == 1:
                     self.centers[i, ] = X_i
-                # if X is empty, set center[i, ] to zero vectors 
+                # if X is empty, set center[i, ] to a zero vector
                 elif X_i.size == 0:
                     self.centers[i, ] = np.zeros(self.X_cols_)
                 else:
