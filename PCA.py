@@ -58,31 +58,31 @@ if __name__ == "__main__":
     X = np.loadtxt('input/mfeat-pix.txt')
     X = X[0:200, ] # choose 0
     
-    # 50% of variances
+    # 50% of variance
     var_50 = PCA()
     var_50.fit(X, explained_variance=0.5)
     var_50.plot_(index = [0, 1, 2, 3, 4])
     print(var_50.reduced_components.shape[1])
     
-    # 80% of variances
+    # 80% of variance
     var_80 = PCA()
     var_80.fit(X, explained_variance=0.8)
     var_80.plot_(index = [0, 1, 2, 3, 4])
     print(var_80.reduced_components.shape[1])
     
-    # 95% of variances
+    # 95% of variance
     var_95 = PCA()
     var_95.fit(X, explained_variance=0.95)
     var_95.plot_(index = [0, 1, 2, 3, 4])
     print(var_95.reduced_components.shape[1])
     
-    # 99% of variances
+    # 99% of variance
     var_99 = PCA()
     var_99.fit(X, explained_variance=0.99)
     var_99.plot_(index = [0, 1, 2, 3, 4])
     print(var_99.reduced_components.shape[1])
     
-    # 100% of variances
+    # 100% of variance
     var_100 = PCA()
     var_100.fit(X, explained_variance=1)
     var_100.plot_(index = [0, 1, 2, 3, 4])
