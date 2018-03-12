@@ -29,10 +29,14 @@ class PCA():
         self.singular_values = self.singular_values[idx]
         self.components = self.components[:, idx]
         
-        # cumulative probabilities for singular values
-        cum_prob = np.cumsum(self.singular_values) / sum(self.singular_values)
-        # find the index of the first element whose cum_prob is larger than explained_variance
-        idx = np.searchsorted(cum_prob, explained_variance)
+        # if explained_variance is one, take all components
+        if explained_variance == 1:
+            idx = self.components.shape[1] - 1
+        else:
+            # cumulative probabilities for singular values
+            cum_prob = np.cumsum(self.singular_values) / sum(self.singular_values)
+            # find the index where elements should be inserted to maintain order
+            idx = np.searchsorted(cum_prob, explained_variance)
     
         self.reduced_components = self.components[:, 0:idx+1]
         self.encoded_X = np.dot(self.centered_X, self.reduced_components)
