@@ -13,6 +13,8 @@ class PCA():
     Train the model using PCA
     """
     def fit(self, X, normalize=True, explained_variance=0.5):
+        if explained_variance > 1 or explained_variance <=0:
+            raise ValueError("explained_variance should be in (0, 1]")
         if normalize:
             X = (X - np.min(X)) / (np.max(X) - np.min(X))
         
