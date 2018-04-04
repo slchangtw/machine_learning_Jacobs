@@ -43,6 +43,7 @@ class LinearRegression():
     Train the model using linear regression
     """
     def fit(self, X, y):
+        # obtain the weights using pseudo-inverse matrix
         self.weights = np.linalg.pinv(X).dot(y)
         
     def predict(self, X):
@@ -60,7 +61,8 @@ class LinearRegression():
 if __name__ == "__main__":
     # load and divide data 
     X = np.loadtxt('input/mfeat-pix.txt')
-
+    
+    # split the dataset into training data and test data
     train_indices = [range(0 + 200*i, 100 + 200*i) for i in range(10)]
     test_indices = [range(100 + 200*i, 200 + 200*i) for i in range(10)]
 
@@ -145,3 +147,4 @@ if __name__ == "__main__":
 
     plt.legend(['Log MSE (training)', 'Log MISS (training)', 'Log MSE (test)', 'Log MISS (test)'], loc='center left', bbox_to_anchor=(1, 0.5))
     plt.show()
+    
