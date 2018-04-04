@@ -31,7 +31,6 @@ class PCA():
         self.singular_values = self.singular_values[idx]
         self.components = self.components[:, idx]
         
-        # if explained_variance is one, take all components
         if explained_variance == 1:
             idx = self.components.shape[1] - 1
         else:
