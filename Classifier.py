@@ -148,3 +148,76 @@ if __name__ == "__main__":
     plt.legend(['Log MSE (training)', 'Log MISS (training)', 'Log MSE (test)', 'Log MISS (test)'], loc='center left', bbox_to_anchor=(1, 0.5))
     plt.show()
     
+    
+    ## train regression models using 10 codebooks in a K-means model
+    KMeans_10 = KMeans(n_clusters=10)
+    KMeans_10.fit(X_train)
+    X_train_new = np.column_stack((np.ones(X_train.shape[0]), KMeans_10.encoded_X))
+    
+    lr = LinearRegression()
+    lr.fit(X_train_new, y_matrix)
+    lr.predict(X_train_new)
+    lr.compute_error(y_vector, y_matrix)
+    print(lr.MSE, lr.MISS)
+    
+    KMeans_10.fit(X_test)
+    X_test_new = np.column_stack((np.ones(X_test.shape[0]), KMeans_10.encoded_X))
+    
+    lr = LinearRegression()
+    lr.fit(X_test_new, y_matrix)
+    lr.predict(X_test_new)
+    lr.compute_error(y_vector, y_matrix)
+    print(lr.MSE, lr.MISS)
+    
+    
+    ## train regression models using different number of codebooks
+    # set maximum number of features and create empty vectors
+    k_max = 300
+    train_MSE = np.zeros(k_max)
+    train_MISS = np.zeros(k_max)
+    test_MSE = np.zeros(k_max)
+    test_MISS = np.zeros(k_max)
+    
+    # training models using different numbers of codebooks
+    for i in range(k_max):
+        KMeans_mod = KMeans(n_clusters=i+1)
+        KMeans_mod.fit(X_train)
+        X_train_new = np.column_stack((np.ones(X_train.shape[0]), KMeans_mod.encoded_X))
+
+        KMeans_mod.fit(X_test)
+        X_test_new = np.column_stack((np.ones(X_test.shape[0]), KMeans_mod.encoded_X))
+
+        lr = LinearRegression()
+        lr.fit(X_train_new, y_matrix)
+        lr.predict(X_train_new)
+        lr.compute_error(y_vector, y_matrix)
+        train_MSE[i] = lr.MSE
+        train_MISS[i] = lr.MISS
+
+        lr.predict(X_test_new)
+        lr.compute_error(y_vector, y_matrix)
+        test_MSE[i] = lr.MSE
+        test_MISS[i] = lr.MISS
+        
+    # plot MSE and MISS
+    plt.plot(train_MSE)
+    plt.plot(train_MISS)
+    plt.plot(test_MSE)
+    plt.plot(test_MISS)
+
+    plt.legend(['MSE (training)', 'MISS (training)', 'MSE (test)', 'MISS (test)'], loc='center left', bbox_to_anchor=(1, 0.5))
+    plt.show()
+    
+    log_train_MSE = np.log(train_MSE)
+    log_train_MISS = np.log(train_MISS)
+    log_test_MSE = np.log(test_MSE)
+    log_test_MISS = np.log(test_MISS)
+    
+    plt.plot(log_train_MSE)
+    plt.plot(log_train_MISS)
+    plt.plot(log_test_MSE)
+    plt.plot(log_test_MISS)
+
+    plt.legend(['Log MSE (training)', 'Log MISS (training)', 'Log MSE (test)', 'Log MISS (test)'], loc='center left', bbox_to_anchor=(1, 0.5))
+    plt.show()
+    
