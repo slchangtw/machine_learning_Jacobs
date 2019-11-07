@@ -1,9 +1,3 @@
 # Machine Learning at Jacobs (Spring 2018)
 
-1. [Machine Learning 2018 Exercise 4](http://minds.jacobs-university.de/sites/default/files/uploads/teaching/MLSpring2018/exercise4_MLSpring2018.pdf)
-
-2. [Machine Learning 2018 Exercise 5](http://minds.jacobs-university.de/sites/default/files/uploads/teaching/MLSpring2018/exercise5_MLSpring2018.pdf)
-
-3. [Machine Learning 2018 Exercise 8](http://minds.jacobs-university.de/sites/default/files/uploads/teaching/MLSpring2018/exercise8_MLSpring2018.pdf)
-
-4. [Machine Learning 2018 Exercise 11](http://minds.jacobs-university.de/sites/default/files/uploads/teaching/MLSpring2018/exercise11_MLSpring2018.pdf)
+The Machine Learning at Jacobs University covered fundamental concepts in the field of machine learning, and the teaching materials can be found at the [link](http://minds.jacobs-university.de/teaching/courses/t2019ml/). In the class of 2018 there were four mini-projects, in which students were asked to implement various machine learning alrorithms from scratch for a digit recognition task. Thus, this repository contains the code, results and the reports.
